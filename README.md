@@ -1,21 +1,41 @@
 # Repo Atlas
 
-[![skills.sh](https://skills.sh/b/vivekmaru/repo-atlas)](https://skills.sh/vivekmaru/repo-atlas)
+> Turn an unfamiliar codebase into a useful, static onboarding guide.
 
-A portable Agent Skill for turning an unfamiliar codebase into a static, browser-ready
-onboarding atlas: architecture, history, operations, code map, docs shelf, and
-a glossary.
+[Discover on skills.sh](https://www.skills.sh/vivekmaru/repo-atlas/repo-atlas) · [Quick start](#quick-start) · [Demo](#demo)
 
-## What it produces
+Repo Atlas creates a browser-ready engineering map: architecture, history,
+operations, a behavior-oriented code map, a docs shelf, and a glossary. It
+explains relationships and common change paths—not just the directory tree.
 
-By default, Repo Atlas builds a coherent documentation bundle under
-`docs/repo-atlas/` in the target repository:
+## At a glance
 
-- guided start, architecture, history, operations, code-map, docs, and glossary pages
-- browser-rendered versions of important Markdown and specification documents
-- local fonts, diagrams, and assets that work from `file://` as well as a static host
+| Understand | Get |
+| --- | --- |
+| System shape | Architecture, request/data-flow, and deployment diagrams |
+| Code ownership | An interactive code map and common change recipes |
+| Engineering context | History, operations, curated docs, and a domain glossary |
+| Source material | Browser-rendered Markdown and specification documents |
 
-It explains behavior and change paths rather than only listing directories.
+By default, output is written to `docs/repo-atlas/` in the target repository.
+The generated bundle works from `file://` and a static host.
+
+## Quick start
+
+Install Repo Atlas for Codex, Claude Code, GitHub Copilot, and OpenCode:
+
+```bash
+npx skills add https://github.com/vivekmaru/repo-atlas --skill repo-atlas \
+  --global --agent codex claude-code github-copilot opencode --yes
+```
+
+Then ask your agent:
+
+```text
+Create a new-engineer HTML repo atlas for this repository.
+```
+
+Omit `--global` to install the skill into the current project for your team.
 
 ## Demo
 
@@ -28,82 +48,54 @@ Repo Atlas generated this onboarding guide for the public
 
 Repo Atlas follows the open Agent Skills layout: one `SKILL.md` with standard
 `name` and `description` frontmatter, plus relative scripts, references, and
-assets. The same source works in Codex, Claude Code, and GitHub Copilot. The
-Codex-specific interface metadata in `agents/openai.yaml` is optional and is
-ignored by other runtimes.
+assets. The optional `agents/openai.yaml` metadata enriches Codex only; other
+runtimes ignore it.
 
-The recommended installation method uses [skills.sh](https://www.skills.sh/docs),
-which places the skill in each runtime's supported directory without creating
-separate, drifting copies in this repository.
+### OpenCode
 
-## Install
+OpenCode discovers standard Agent Skills directly, including skills in
+`.opencode/skills/`, `.claude/skills/`, and `.agents/skills/`. The quick-start
+command above installs the same canonical skill for OpenCode; use
+`--agent opencode` alone if that is the only runtime you need.
 
-### Codex, Claude Code, and GitHub Copilot
+### Manual installation
 
-Install for all three agent runtimes:
+<details>
+<summary>Use a specific skill directory instead of the installer</summary>
 
-```bash
-npx skills add vivekmaru/repo-atlas --skill repo-atlas \
-  --global --agent codex claude-code github-copilot --yes
-```
+| Runtime | Personal location | Project location |
+| --- | --- | --- |
+| Claude Code | `~/.claude/skills/repo-atlas` | `.claude/skills/repo-atlas` |
+| GitHub Copilot | `~/.copilot/skills/repo-atlas` | `.github/skills/repo-atlas` |
+| OpenCode | `~/.config/opencode/skills/repo-atlas` | `.opencode/skills/repo-atlas` |
 
-Omit `--global` to install it into the current project for your team. The
-installer selects the shared Agent Skills directories supported by each runtime.
+Clone this repository into the applicable location. Codex users should prefer
+the installer, which resolves the active Codex skills directory.
 
-### Claude Code manually
-
-```bash
-git clone https://github.com/vivekmaru/repo-atlas.git ~/.claude/skills/repo-atlas
-```
-
-For a project-local install, clone it to `.claude/skills/repo-atlas` in the
-target repository instead.
-
-### GitHub Copilot manually
-
-Clone the repository to `.github/skills/repo-atlas` in the target repository,
-or to `~/.copilot/skills/repo-atlas` for a personal installation.
-
-### With OpenSpec
-
-OpenSpec is a planning layer, not a separate skill runtime. Initialize OpenSpec
-for the agent you use, then install Repo Atlas alongside its generated skills:
-
-```bash
-openspec init --tools claude,github-copilot
-npx skills add vivekmaru/repo-atlas --skill repo-atlas \
-  --agent claude-code github-copilot --yes
-```
-
-Repo Atlas automatically includes `openspec/` specifications and change history
-in its discovery pass. It coexists with OpenSpec's `.claude/skills/openspec-*`
-and `.github/skills/openspec-*` directories; do not place it inside `openspec/`.
-
-## Use
-
-Ask the agent:
-
-```text
-Create a new-engineer HTML repo atlas for this repository.
-```
-
-The skill is self-contained apart from Python 3, which is used by the optional
-Markdown renderer and Mermaid fetch helper.
+</details>
 
 ## Mermaid bundle
 
-Atlas pages with source Mermaid diagrams use a local browser bundle so they
-continue to work offline. Repo Atlas intentionally does not commit the
-third-party bundle. Instead, it pins Mermaid `11.16.0` and provides a helper
-that verifies the npm tarball's SHA-512 integrity before extracting it:
+Source Mermaid diagrams stay available offline. Repo Atlas intentionally does
+not commit the third-party browser bundle; instead it pins Mermaid `11.16.0`
+and verifies the npm tarball before extracting it:
 
 ```bash
 python3 /path/to/repo-atlas/scripts/fetch_mermaid.py \
   docs/repo-atlas/vendor/mermaid.min.js
 ```
 
-The helper also writes Mermaid's MIT license beside the bundle. Use it only
-when the generated atlas contains Mermaid diagrams.
+The helper writes Mermaid's MIT license beside the bundle. Use it only when an
+atlas contains Mermaid diagrams.
+
+## Registry availability
+
+Repo Atlas is already listed on
+[skills.sh](https://www.skills.sh/vivekmaru/repo-atlas/repo-atlas), which
+discovers the public repository's root `SKILL.md`. No separate submission is
+needed there. For other agent ecosystems, the standard skill directory and a
+public Git repository are the distribution mechanism; add the skill to curated
+collections only when their maintainers' scope and submission rules fit it.
 
 ## License
 

@@ -15,7 +15,7 @@ Repo atlas generation should be treated as a semi-deterministic documentation bu
 
 Use fast local search first:
 
-- `rg --files -g 'README*' -g '*.md' -g 'pom.xml' -g 'package.json' -g 'pnpm-workspace.yaml' -g 'go.mod' -g 'Cargo.toml' -g '*.sln' -g '.gitlab-ci.yml' -g 'github/workflows/*' -g 'openspec/**'`
+- `rg --files -g 'README*' -g '*.md' -g 'pom.xml' -g 'package.json' -g 'pnpm-workspace.yaml' -g 'go.mod' -g 'Cargo.toml' -g '*.sln' -g '.gitlab-ci.yml' -g 'github/workflows/*'`
 - `rg -n "ADR|decision|architecture|spec|glossary|timeout|security|deploy|admin|API|protocol|migration|deprecated|superseded" .`
 - `find . -maxdepth 3 -type d` when the repo structure is unfamiliar.
 
@@ -24,7 +24,6 @@ Then inspect the highest-signal files:
 - build/workspace manifests
 - CI/deploy configs
 - docs/spec/history directories
-- `openspec/` specifications and changes when present
 - app entry points
 - controllers/routes/handlers
 - services/use cases/domain modules

@@ -1,6 +1,6 @@
 ---
 name: repo-atlas
-description: Create polished repository onboarding documentation as static HTML. Use when a user asks an agent to explore a repo, explain architecture, produce diagrams, render existing Markdown/spec docs into browser-friendly pages, build a glossary of acronyms/domain terms, summarize historical decisions from docs such as .kiro/ or openspec/, or make a new-engineer repo atlas/code map.
+description: Create polished repository onboarding documentation as static HTML. Use when a user asks an agent to explore a repo, explain architecture, produce diagrams, render existing Markdown/spec docs into browser-friendly pages, build a glossary of acronyms/domain terms, summarize historical decisions from docs such as .kiro/, or make a new-engineer repo atlas/code map.
 ---
 
 # Repo Atlas
@@ -35,7 +35,7 @@ If a repo already contains a high-quality `docs/repo-atlas/`, use it as the loca
 
 1. **Gather context first**
    - Read repo entry points: `README*`, build files, package/workspace manifests, CI config, docs directories, and obvious app/service roots.
-   - Search for decision/spec/history directories such as `.kiro/`, `openspec/`, `docs/`, `adr/`, `architecture/`, `rfcs/`, `specs/`, and `design/`.
+   - Search for decision/spec/history directories such as `.kiro/`, `docs/`, `adr/`, `architecture/`, `rfcs/`, `specs/`, and `design/`.
    - Use QMD or other local notes if project history is likely to matter and the environment provides it.
    - Inspect source by behavior, not only by directory tree: ingress, transformation, domain logic, persistence/transport, background jobs, operations, deployment, tests.
 
