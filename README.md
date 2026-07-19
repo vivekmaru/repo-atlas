@@ -17,6 +17,13 @@ By default, Repo Atlas builds a coherent documentation bundle under
 
 It explains behavior and change paths rather than only listing directories.
 
+## Demo
+
+Repo Atlas generated this onboarding guide for the public
+[Forge task-tracker repository](https://github.com/vivekmaru/task-tracker).
+
+![Repo Atlas onboarding guide for Forge](examples/forge-atlas.jpg)
+
 ## Compatibility
 
 Repo Atlas follows the open Agent Skills layout: one `SKILL.md` with standard
