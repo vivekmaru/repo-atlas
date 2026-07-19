@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Atlas"
+  short_description: "Generate beautiful codebase onboarding docs"
+  default_prompt: "Use $repo-atlas to explore this repository and create a new-engineer HTML repo atlas."
